@@ -23,7 +23,7 @@ STAGES = [("lint", "Lint"), ("rtl_sim", "RTL sim"), ("synth", "Synthesis"),
 def collect() -> list[dict]:
     runs = []
     for mf in RUNS.glob("*/metrics.json"):
-        if mf.parent.name.startswith("_"):
+        if mf.parent.name.startswith(("_", "dse_")):      # DSE sweeps have their own page
             continue
         try:
             m = json.loads(mf.read_text())
@@ -124,6 +124,33 @@ def build(path: Path | None = None, refresh: int = 5) -> Path:
         build_bottlenecks(path.parent / "bottlenecks.html", runs)
     except Exception as e:  # never break the main dashboard
         print(f"[bottlenecks page] {e}")
+    try:
+        build_explore(path.parent / "explore.html")
+    except Exception as e:
+        print(f"[explore page] {e}")
+    return path
+
+
+def build_explore(path: Path) -> Path:
+    """Third page: design-space exploration + agent sessions."""
+    import importlib
+    import explore_page
+    sf = RUNS / "dse" / "summary.json"
+    agents = []
+    for tf in sorted((RUNS / "agent").glob("*/trajectory.json")) if (RUNS / "agent").exists() else []:
+        try:
+            agents.append(json.loads(tf.read_text()))
+        except Exception:
+            pass
+    agents.sort(key=lambda t: t.get("started", ""), reverse=True)
+    data = json.dumps({"generated": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                       "dse": json.loads(sf.read_text()) if sf.exists() else None, "agents": agents})
+    style = TEMPLATE.split("<style>", 1)[1].split("</style>", 1)[0]
+    html = importlib.reload(explore_page).ETEMPLATE.replace("/*__STYLE__*/", style) \
+        .replace("/*__DATA__*/", data.replace("</", "<\\/"))
+    tmp = path.with_suffix(".tmp")
+    tmp.write_text(html, encoding="utf-8")
+    tmp.replace(path)
     return path
 
 
@@ -259,6 +286,7 @@ function header(){const live=runs.some(r=>r.status==='running');
  return `<header><h1>PPA Agent · PicoRV32</h1><span class="sub">sky130_fd_sc_hd · tt 25°C 1.80 V · Yosys/ABC + custom STA &amp; activity power</span>
  <span class="badge ${live?'run':''}">${live?'● live — refreshing every few seconds':'idle'}</span>
  <a class="toggle" style="text-decoration:none" href="bottlenecks.html" target="_blank">Bottlenecks &amp; AI feedback ↗</a>
+ <a class="toggle" style="text-decoration:none;margin-left:0" href="explore.html" target="_blank">Exploration &amp; agent ↗</a>
  <button class="toggle" style="margin-left:0" onclick="flip()">theme</button>
  <div class="muted" style="flex-basis:100%">generated ${esc(D.generated)} · ${runs.length} run(s)</div></header>`}
 window.flip=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
