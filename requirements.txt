@@ -1,2 +1,4 @@
 anthropic>=2.14
 liberty-parser==0.0.29
+numpy>=2.0
+pyspark==4.2.1      # distributed executor (needs Java 17+)

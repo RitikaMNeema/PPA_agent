@@ -20,7 +20,7 @@ import time
 from pathlib import Path
 
 from design import load_config, write_top
-from env import ROOT, RUNS
+from env import ROOT, RUNS, dashboard_enabled
 from power import estimate_power, gate_sim
 from sim import lint, rtl_sim
 from sta import parse_sdc, run_sta
@@ -56,6 +56,8 @@ def run_iteration(tag: str, config: Path | None = None, pwr_cycles: int = 0,
     def save():
         m["wall_seconds"] = round(time.time() - t0, 1)
         (rd / "metrics.json").write_text(json.dumps(m, indent=2))
+        if not dashboard_enabled():
+            return
         try:
             import dashboard
             dashboard.build()

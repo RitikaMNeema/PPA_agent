@@ -9,9 +9,11 @@ from dataclasses import dataclass
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TOOLS = ROOT / "tools"
+# Toolchains: ./tools on a workstation; in the Docker image / on cluster nodes the
+# tools are on PATH (or under $PPA_TOOLS), so every lookup degrades gracefully.
+TOOLS = Path(os.environ.get("PPA_TOOLS", ROOT / "tools"))
 OSS = TOOLS / "oss-cad-suite"
-RVGCC_BIN = next((TOOLS).glob("xpack-riscv-none-elf-gcc-*")) / "bin"
+RVGCC_BIN = next(iter(sorted(TOOLS.glob("xpack-riscv-none-elf-gcc-*"))), TOOLS / "riscv-gcc") / "bin"
 
 DESIGN = ROOT / "design" / "picorv32"
 RTL_DIR = DESIGN / "rtl"
@@ -25,10 +27,16 @@ BUILD = ROOT / "build"          # shared, cacheable artifacts (firmware, lib cac
 
 def tool_env() -> dict:
     env = os.environ.copy()
-    extra = [str(OSS / "bin"), str(OSS / "lib"), str(RVGCC_BIN)]
+    extra = [str(d) for d in (OSS / "bin", OSS / "lib", RVGCC_BIN) if d.exists()]
     env["PATH"] = os.pathsep.join(extra + [env.get("PATH", "")])
-    env["VERILATOR_ROOT"] = str(OSS / "share" / "verilator")
+    if (OSS / "share" / "verilator").exists():
+        env["VERILATOR_ROOT"] = str(OSS / "share" / "verilator")
     return env
+
+
+def dashboard_enabled() -> bool:
+    """Batch/cluster workers set PPA_NO_DASHBOARD=1; the driver rebuilds once at the end."""
+    return os.environ.get("PPA_NO_DASHBOARD", "") != "1"
 
 
 @dataclass
