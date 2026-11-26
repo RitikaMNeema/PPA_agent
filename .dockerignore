@@ -1,0 +1,7 @@
+tools/
+.venv/
+runs/
+build/
+upstream/
+**/__pycache__
+.git/

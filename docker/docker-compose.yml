@@ -1,0 +1,48 @@
+# Mini compute farm: Spark master + N workers + driver, all from the ppa-agent image,
+# sharing the repository through a bind mount (stand-in for NFS on a real farm).
+#
+#   docker compose -f docker/docker-compose.yml build
+#   docker compose -f docker/docker-compose.yml up -d --scale spark-worker=4 spark-master spark-worker
+#   docker compose -f docker/docker-compose.yml run --rm dse        # BO sweep on the cluster
+#   docker compose -f docker/docker-compose.yml run --rm agent      # closed-loop agent
+#   Spark UI: http://localhost:8080
+x-node: &node
+  image: ppa-agent:latest
+  volumes: ["..:/work"]
+  environment:
+    PPA_WORKER_ROOT: /work
+    PPA_NO_DASHBOARD: "1"
+
+services:
+  spark-master:
+    <<: *node
+    build: {context: .., dockerfile: docker/Dockerfile}
+    command: spark-class org.apache.spark.deploy.master.Master --host spark-master
+    ports: ["8080:8080", "7077:7077"]
+
+  spark-worker:
+    <<: *node
+    command: spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+    environment:
+      PPA_WORKER_ROOT: /work
+      SPARK_WORKER_CORES: "4"        # concurrent flow runs per worker node
+      SPARK_WORKER_MEMORY: 8g
+    depends_on: [spark-master]
+
+  dse:
+    <<: *node
+    hostname: driver
+    environment:
+      PPA_WORKER_ROOT: /work
+      SPARK_DRIVER_HOST: driver
+    command: python3 flow/dse.py --executor spark --master spark://spark-master:7077 --workers 16 --init 16 --rounds 4 --batch 8
+    depends_on: [spark-master, spark-worker]
+
+  agent:
+    <<: *node
+    hostname: driver
+    environment:
+      PPA_WORKER_ROOT: /work
+      SPARK_DRIVER_HOST: driver
+    command: python3 flow/agent.py --executor spark --master spark://spark-master:7077 --parallel 8 --steps 6
+    depends_on: [spark-master, spark-worker]
