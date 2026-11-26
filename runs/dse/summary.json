@@ -1,0 +1,1080 @@
+{
+  "generated": "2026-11-25 22:46:23",
+  "executor": "spark",
+  "workers": 6,
+  "host": {
+    "host": "SDxbattle",
+    "os": "Windows-11-10.0.26200-SP0",
+    "cpus": 16,
+    "python": "3.13.3"
+  },
+  "pwr_cycles": 20000,
+  "weights": {
+    "runtime": 0.4,
+    "power": 0.4,
+    "area": 0.2
+  },
+  "space": [
+    {
+      "name": "TWO_STAGE_SHIFT",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "BARREL_SHIFTER",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "TWO_CYCLE_COMPARE",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "TWO_CYCLE_ALU",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ENABLE_REGS_DUALPORT",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "ENABLE_FAST_MUL",
+      "values": [
+        0,
+        1
+      ]
+    },
+    {
+      "name": "abc_script",
+      "values": [
+        "speed",
+        "area"
+      ]
+    }
+  ],
+  "space_size": 128,
+  "evaluated": 26,
+  "ok": 26,
+  "wall_seconds": 1053.8,
+  "cpu_seconds": 5196.8,
+  "reference": {
+    "tag": "dse_1000000",
+    "runtime": 7064.494892167992,
+    "power": 12.3924,
+    "area": 109186.0
+  },
+  "best": {
+    "tag": "dse_0110000",
+    "knobs": {
+      "TWO_STAGE_SHIFT": 0,
+      "BARREL_SHIFTER": 1,
+      "TWO_CYCLE_COMPARE": 1,
+      "TWO_CYCLE_ALU": 0,
+      "ENABLE_REGS_DUALPORT": 0,
+      "ENABLE_FAST_MUL": 0,
+      "abc_script": "speed"
+    },
+    "cost": 0.9855,
+    "runtime": 6756.056818181818,
+    "power": 12.3716,
+    "area": 111157.9
+  },
+  "pareto": [
+    "dse_0110000",
+    "dse_1100000",
+    "dse_1000000",
+    "dse_0000000",
+    "dse_0110010",
+    "dse_0000010",
+    "dse_1011010"
+  ],
+  "loo_final": {
+    "runtime": {
+      "mape_pct": 4.68,
+      "r2": 0.844
+    },
+    "power": {
+      "mape_pct": 0.25,
+      "r2": 0.975
+    },
+    "area": {
+      "mape_pct": 0.4,
+      "r2": 0.997
+    }
+  },
+  "relevance_final": {
+    "runtime": {
+      "TWO_STAGE_SHIFT": 0.215,
+      "BARREL_SHIFTER": 0.147,
+      "TWO_CYCLE_COMPARE": 0.024,
+      "TWO_CYCLE_ALU": 0.099,
+      "ENABLE_REGS_DUALPORT": 0.104,
+      "ENABLE_FAST_MUL": 0.224,
+      "abc_script": 0.187
+    },
+    "power": {
+      "TWO_STAGE_SHIFT": 0.007,
+      "BARREL_SHIFTER": 0.228,
+      "TWO_CYCLE_COMPARE": 0.025,
+      "TWO_CYCLE_ALU": 0.336,
+      "ENABLE_REGS_DUALPORT": 0.022,
+      "ENABLE_FAST_MUL": 0.312,
+      "abc_script": 0.069
+    },
+    "area": {
+      "TWO_STAGE_SHIFT": 0.0,
+      "BARREL_SHIFTER": 0.005,
+      "TWO_CYCLE_COMPARE": 0.001,
+      "TWO_CYCLE_ALU": 0.002,
+      "ENABLE_REGS_DUALPORT": 0.005,
+      "ENABLE_FAST_MUL": 0.984,
+      "abc_script": 0.003
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "n_train": 11,
+      "loo": {
+        "runtime": {
+          "mape_pct": 6.58,
+          "r2": 0.436
+        },
+        "power": {
+          "mape_pct": 0.3,
+          "r2": 0.953
+        },
+        "area": {
+          "mape_pct": 1.68,
+          "r2": 0.937
+        }
+      },
+      "relevance": {
+        "runtime": {
+          "TWO_STAGE_SHIFT": 0.003,
+          "BARREL_SHIFTER": 0.03,
+          "TWO_CYCLE_COMPARE": 0.013,
+          "TWO_CYCLE_ALU": 0.124,
+          "ENABLE_REGS_DUALPORT": 0.007,
+          "ENABLE_FAST_MUL": 0.24,
+          "abc_script": 0.583
+        },
+        "power": {
+          "TWO_STAGE_SHIFT": 0.001,
+          "BARREL_SHIFTER": 0.046,
+          "TWO_CYCLE_COMPARE": 0.003,
+          "TWO_CYCLE_ALU": 0.003,
+          "ENABLE_REGS_DUALPORT": 0.018,
+          "ENABLE_FAST_MUL": 0.92,
+          "abc_script": 0.01
+        },
+        "area": {
+          "TWO_STAGE_SHIFT": 0.0,
+          "BARREL_SHIFTER": 0.002,
+          "TWO_CYCLE_COMPARE": 0.0,
+          "TWO_CYCLE_ALU": 0.001,
+          "ENABLE_REGS_DUALPORT": 0.007,
+          "ENABLE_FAST_MUL": 0.984,
+          "abc_script": 0.005
+        }
+      },
+      "batch": [
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ei": 0.002517138097781488,
+          "pred_cost": 1.0049351153636528,
+          "actual_cost": 1.0879
+        },
+        {
+          "x": [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "ei": 0.0047854826868956955,
+          "pred_cost": 1.0755183005664728,
+          "actual_cost": 1.0505
+        },
+        {
+          "x": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ei": 0.0016906765876561912,
+          "pred_cost": 1.0105807485413083,
+          "actual_cost": 1.005
+        },
+        {
+          "x": [
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ei": 0.003736748905901011,
+          "pred_cost": 1.021397974810938,
+          "actual_cost": 0.9968
+        },
+        {
+          "x": [
+            1,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "ei": 0.00027096372614617784,
+          "pred_cost": 1.0948672866836089,
+          "actual_cost": 1.0802
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "n_train": 16,
+      "loo": {
+        "runtime": {
+          "mape_pct": 7.7,
+          "r2": 0.627
+        },
+        "power": {
+          "mape_pct": 0.48,
+          "r2": 0.765
+        },
+        "area": {
+          "mape_pct": 0.77,
+          "r2": 0.985
+        }
+      },
+      "relevance": {
+        "runtime": {
+          "TWO_STAGE_SHIFT": 0.05,
+          "BARREL_SHIFTER": 0.004,
+          "TWO_CYCLE_COMPARE": 0.002,
+          "TWO_CYCLE_ALU": 0.528,
+          "ENABLE_REGS_DUALPORT": 0.015,
+          "ENABLE_FAST_MUL": 0.345,
+          "abc_script": 0.057
+        },
+        "power": {
+          "TWO_STAGE_SHIFT": 0.005,
+          "BARREL_SHIFTER": 0.056,
+          "TWO_CYCLE_COMPARE": 0.004,
+          "TWO_CYCLE_ALU": 0.061,
+          "ENABLE_REGS_DUALPORT": 0.001,
+          "ENABLE_FAST_MUL": 0.863,
+          "abc_script": 0.01
+        },
+        "area": {
+          "TWO_STAGE_SHIFT": 0.001,
+          "BARREL_SHIFTER": 0.007,
+          "TWO_CYCLE_COMPARE": 0.003,
+          "TWO_CYCLE_ALU": 0.007,
+          "ENABLE_REGS_DUALPORT": 0.026,
+          "ENABLE_FAST_MUL": 0.942,
+          "abc_script": 0.014
+        }
+      },
+      "batch": [
+        {
+          "x": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            0
+          ],
+          "ei": 0.0004415565774556001,
+          "pred_cost": 1.1630427572290263,
+          "actual_cost": 1.1644
+        },
+        {
+          "x": [
+            1,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ei": 0.00012297725800186295,
+          "pred_cost": 1.0185939751133082,
+          "actual_cost": 1.0126
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "ei": 0.00010806936755494777,
+          "pred_cost": 1.0825165881846646,
+          "actual_cost": 1.1249
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "ei": 3.0042723105724476e-05,
+          "pred_cost": 1.1034919297196932,
+          "actual_cost": 1.1106
+        },
+        {
+          "x": [
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          "ei": 2.267099815097531e-05,
+          "pred_cost": 1.0576724703141767,
+          "actual_cost": 1.0654
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "n_train": 21,
+      "loo": {
+        "runtime": {
+          "mape_pct": 2.89,
+          "r2": 0.873
+        },
+        "power": {
+          "mape_pct": 0.41,
+          "r2": 0.871
+        },
+        "area": {
+          "mape_pct": 0.5,
+          "r2": 0.989
+        }
+      },
+      "relevance": {
+        "runtime": {
+          "TWO_STAGE_SHIFT": 0.301,
+          "BARREL_SHIFTER": 0.123,
+          "TWO_CYCLE_COMPARE": 0.033,
+          "TWO_CYCLE_ALU": 0.121,
+          "ENABLE_REGS_DUALPORT": 0.056,
+          "ENABLE_FAST_MUL": 0.217,
+          "abc_script": 0.149
+        },
+        "power": {
+          "TWO_STAGE_SHIFT": 0.033,
+          "BARREL_SHIFTER": 0.186,
+          "TWO_CYCLE_COMPARE": 0.056,
+          "TWO_CYCLE_ALU": 0.245,
+          "ENABLE_REGS_DUALPORT": 0.086,
+          "ENABLE_FAST_MUL": 0.331,
+          "abc_script": 0.062
+        },
+        "area": {
+          "TWO_STAGE_SHIFT": 0.0,
+          "BARREL_SHIFTER": 0.01,
+          "TWO_CYCLE_COMPARE": 0.002,
+          "TWO_CYCLE_ALU": 0.008,
+          "ENABLE_REGS_DUALPORT": 0.015,
+          "ENABLE_FAST_MUL": 0.953,
+          "abc_script": 0.01
+        }
+      },
+      "batch": [
+        {
+          "x": [
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "ei": 2.7632624400626563e-05,
+          "pred_cost": 1.0365066518867847,
+          "actual_cost": 0.9855
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          "ei": 0.0,
+          "pred_cost": 1.2289081860624844,
+          "actual_cost": 1.2555
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          "ei": 0.0,
+          "pred_cost": 1.2810629810505807,
+          "actual_cost": 1.4844
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          "ei": 0.0,
+          "pred_cost": 1.1131744443429687,
+          "actual_cost": 1.1348
+        },
+        {
+          "x": [
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1
+          ],
+          "ei": 0.0,
+          "pred_cost": 1.1494787831890056,
+          "actual_cost": 1.1
+        }
+      ]
+    }
+  ],
+  "table": [
+    {
+      "tag": "dse_0110000",
+      "round": 3,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 6756.056818181818,
+        "power": 12.3716,
+        "area": 111157.9
+      },
+      "cost": 0.9855,
+      "seconds": 186.2,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1100000",
+      "round": 1,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 6986.242424242424,
+        "power": 12.3354,
+        "area": 110887.6
+      },
+      "cost": 0.9968,
+      "seconds": 224.2,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1000000",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7064.494892167992,
+        "power": 12.3924,
+        "area": 109186.0
+      },
+      "cost": 1.0,
+      "seconds": 233.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1010000",
+      "round": 1,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7096.648230088495,
+        "power": 12.44,
+        "area": 110068.1
+      },
+      "cost": 1.005,
+      "seconds": 226.9,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1110000",
+      "round": 2,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7206.460606060606,
+        "power": 12.4079,
+        "area": 111380.6
+      },
+      "cost": 1.0126,
+      "seconds": 194.6,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1100100",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7431.691078561918,
+        "power": 12.343,
+        "area": 119044.2
+      },
+      "cost": 1.0373,
+      "seconds": 177.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1000001",
+      "round": 1,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 7731.453416149068,
+        "power": 12.5065,
+        "area": 114154.5
+      },
+      "cost": 1.0505,
+      "seconds": 226.3,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0110100",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7812.892561983472,
+        "power": 12.3524,
+        "area": 119069.2
+      },
+      "cost": 1.0592,
+      "seconds": 177.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1110100",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 7802.145804676754,
+        "power": 12.3663,
+        "area": 119259.4
+      },
+      "cost": 1.0594,
+      "seconds": 216.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1010001",
+      "round": 2,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 7949.653035935564,
+        "power": 12.5352,
+        "area": 115017.8
+      },
+      "cost": 1.0654,
+      "seconds": 192.3,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1101000",
+      "round": 1,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 8098.111533586818,
+        "power": 12.8358,
+        "area": 113179.8
+      },
+      "cost": 1.0802,
+      "seconds": 224.3,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000000",
+      "round": 1,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 8596.946847960444,
+        "power": 12.43,
+        "area": 109154.7
+      },
+      "cost": 1.0879,
+      "seconds": 230.2,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000101",
+      "round": 3,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 8371.170610211706,
+        "power": 12.4396,
+        "area": 122576.3
+      },
+      "cost": 1.1,
+      "seconds": 174.5,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0001000",
+      "round": 2,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 8892.099644128115,
+        "power": 12.5605,
+        "area": 110083.1
+      },
+      "cost": 1.1106,
+      "seconds": 196.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1001100",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 8809.540389972146,
+        "power": 12.5265,
+        "area": 118378.5
+      },
+      "cost": 1.12,
+      "seconds": 177.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000001",
+      "round": 2,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 9032.376623376624,
+        "power": 12.5345,
+        "area": 114013.1
+      },
+      "cost": 1.1249,
+      "seconds": 192.7,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000100",
+      "round": 3,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 9183.128415300545,
+        "power": 12.3862,
+        "area": 117382.6
+      },
+      "cost": 1.1348,
+      "seconds": 173.4,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0110010",
+      "round": 2,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 9275.29886914378,
+        "power": 11.6959,
+        "area": 142882.0
+      },
+      "cost": 1.1644,
+      "seconds": 180.6,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0011101",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 0,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 9675.613333333333,
+        "power": 12.5731,
+        "area": 123384.6
+      },
+      "cost": 1.1797,
+      "seconds": 178.7,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0101110",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 9763.066439522998,
+        "power": 12.1244,
+        "area": 153233.2
+      },
+      "cost": 1.2248,
+      "seconds": 208.6,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1101010",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 10380.083752093802,
+        "power": 12.1684,
+        "area": 144823.9
+      },
+      "cost": 1.2458,
+      "seconds": 227.5,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000010",
+      "round": 3,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 10849.292604501607,
+        "power": 11.7886,
+        "area": 142305.2
+      },
+      "cost": 1.2555,
+      "seconds": 179.5,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1011010",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 10881.91935483871,
+        "power": 11.8576,
+        "area": 141240.5
+      },
+      "cost": 1.2576,
+      "seconds": 215.3,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0001110",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 1,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "speed"
+      },
+      "metrics": {
+        "runtime": 11182.29132569558,
+        "power": 11.8549,
+        "area": 149435.8
+      },
+      "cost": 1.2895,
+      "seconds": 176.1,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_1111011",
+      "round": 0,
+      "source": "init",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 1,
+        "BARREL_SHIFTER": 1,
+        "TWO_CYCLE_COMPARE": 1,
+        "TWO_CYCLE_ALU": 1,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 13289.8121085595,
+        "power": 12.2421,
+        "area": 150710.8
+      },
+      "cost": 1.4237,
+      "seconds": 224.8,
+      "host": "SDxbattle"
+    },
+    {
+      "tag": "dse_0000011",
+      "round": 3,
+      "source": "bo",
+      "knobs": {
+        "TWO_STAGE_SHIFT": 0,
+        "BARREL_SHIFTER": 0,
+        "TWO_CYCLE_COMPARE": 0,
+        "TWO_CYCLE_ALU": 0,
+        "ENABLE_REGS_DUALPORT": 0,
+        "ENABLE_FAST_MUL": 1,
+        "abc_script": "area"
+      },
+      "metrics": {
+        "runtime": 14606.623376623376,
+        "power": 11.9198,
+        "area": 148831.5
+      },
+      "cost": 1.4844,
+      "seconds": 181.7,
+      "host": "SDxbattle"
+    }
+  ]
+}

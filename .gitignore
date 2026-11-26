@@ -15,6 +15,16 @@ runs/iter000_baseline/*
 !runs/iter000_baseline/advice.json
 !runs/dashboard.html
 !runs/bottlenecks.html
+!runs/explore.html
+!runs/dse/
+runs/dse/*
+!runs/dse/summary.json
+!runs/dse/report.md
+!runs/dse/dataset.jsonl
+!runs/agent/
+runs/agent/*/*
+!runs/agent/*/trajectory.json
+!runs/agent/*/report.md
 
 # generated design candidates (re-create with flow/candidates.py)
 design/picorv32/candidates/
