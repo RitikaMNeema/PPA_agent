@@ -1,5 +1,7 @@
 # PPA_agent — AI-driven PPA optimization on a distributed ASIC flow
 
+[![ci](https://github.com/RitikaMNeema/PPA_agent/actions/workflows/ci.yml/badge.svg)](https://github.com/RitikaMNeema/PPA_agent/actions/workflows/ci.yml)
+
 An AI system that improves the **Power / Performance / Area (PPA)** of a real RISC-V
 CPU core (PicoRV32), built on an open-source ASIC flow. It combines three things:
 
@@ -127,7 +129,8 @@ docker compose -f docker/docker-compose.yml run --rm agent
 ## Known limitations
 * Timing is pre-placement (ideal clock, wire-load model); power is zero-delay activity × liberty energy, pre-CTS.
 * DSE and agent use a 20k-cycle power window for speed, measured against a reference with the same window.
-* The Docker image and compose cluster have not been tested on this machine (no Docker). Spark was tested in local mode.
+* The Docker image is built and smoke-tested in CI (Linux: lint, RTL sim, synth, STA in the container).
+  Spark was tested in local mode; the multi-node compose cluster has not yet been run.
 
 ## Roadmap
 - [x] Reproducible flow, PPA reports, live dashboard
