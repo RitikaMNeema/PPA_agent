@@ -1,0 +1,254 @@
+$ verilator_bin --lint-only -Wall -Wno-fatal --top-module picorv32_top <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v <repo>\runs\agent_rules_s1_2\inputs\top.v
+%Warning-DECLFILENAME: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:2182:8: Filename 'picorv32' does not match MODULE name: 'picorv32_regs'
+ 2182 | module picorv32_regs (
+      |        ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/DECLFILENAME?v=5.055
+                       ... Use "/* verilator lint_off DECLFILENAME */" and lint_on around source to disable this message.
+%Warning-DECLFILENAME: <repo>\runs\agent_rules_s1_2\inputs\top.v:2:8: Filename 'top' does not match MODULE name: 'picorv32_top'
+    2 | module picorv32_top (
+      |        ^~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:39:4: Instance pin connected by name with empty reference: 'mem_la_read'
+   39 |   .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
+      |    ^~~~~~~~~~~
+                          ... For warning description see https://verilator.org/warn/PINCONNECTEMPTY?v=5.055
+                          ... Use "/* verilator lint_off PINCONNECTEMPTY */" and lint_on around source to disable this message.
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:39:20: Instance pin connected by name with empty reference: 'mem_la_write'
+   39 |   .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
+      |                    ^~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:39:37: Instance pin connected by name with empty reference: 'mem_la_addr'
+   39 |   .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
+      |                                     ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:39:53: Instance pin connected by name with empty reference: 'mem_la_wdata'
+   39 |   .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
+      |                                                     ^~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:39:70: Instance pin connected by name with empty reference: 'mem_la_wstrb'
+   39 |   .mem_la_read(), .mem_la_write(), .mem_la_addr(), .mem_la_wdata(), .mem_la_wstrb(),
+      |                                                                      ^~~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:40:4: Instance pin connected by name with empty reference: 'pcpi_valid'
+   40 |   .pcpi_valid(), .pcpi_insn(), .pcpi_rs1(), .pcpi_rs2(),
+      |    ^~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:40:19: Instance pin connected by name with empty reference: 'pcpi_insn'
+   40 |   .pcpi_valid(), .pcpi_insn(), .pcpi_rs1(), .pcpi_rs2(),
+      |                   ^~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:40:33: Instance pin connected by name with empty reference: 'pcpi_rs1'
+   40 |   .pcpi_valid(), .pcpi_insn(), .pcpi_rs1(), .pcpi_rs2(),
+      |                                 ^~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:40:46: Instance pin connected by name with empty reference: 'pcpi_rs2'
+   40 |   .pcpi_valid(), .pcpi_insn(), .pcpi_rs1(), .pcpi_rs2(),
+      |                                              ^~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:43:4: Instance pin connected by name with empty reference: 'trace_valid'
+   43 |   .trace_valid(), .trace_data()
+      |    ^~~~~~~~~~~
+%Warning-PINCONNECTEMPTY: <repo>\runs\agent_rules_s1_2\inputs\top.v:43:20: Instance pin connected by name with empty reference: 'trace_data'
+   43 |   .trace_valid(), .trace_data()
+      |                    ^~~~~~~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:272:32: Unnamed generate block 'genblk1' (IEEE 1800-2023 27.6)
+                                                                                                              : ... Suggest assign a label with 'begin : gen_<label_name>'
+  272 |  generate if (ENABLE_FAST_MUL) begin
+      |                                ^~~~~
+                     ... For warning description see https://verilator.org/warn/GENUNNAMED?v=5.055
+                     ... Use "/* verilator lint_off GENUNNAMED */" and lint_on around source to disable this message.
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:285:27: Unnamed generate block 'genblk1' (IEEE 1800-2023 27.6)
+                                                                                                              : ... Suggest assign a label with 'begin : gen_<label_name>'
+  285 |  end else if (ENABLE_MUL) begin
+      |                           ^~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:298:11: Unnamed generate block 'genblk1' (IEEE 1800-2023 27.6)
+                                                                                                              : ... Suggest assign a label with 'begin : gen_<label_name>'
+  298 |  end else begin
+      |           ^~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:305:27: Unnamed generate block 'genblk2' (IEEE 1800-2023 27.6)
+                                                                                                              : ... Suggest assign a label with 'begin : gen_<label_name>'
+  305 |  generate if (ENABLE_DIV) begin
+      |                           ^~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:318:11: Unnamed generate block 'genblk2' (IEEE 1800-2023 27.6)
+                                                                                                              : ... Suggest assign a label with 'begin : gen_<label_name>'
+  318 |  end else begin
+      |           ^~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1237:30: Unnamed generate block 'genblk3' (IEEE 1800-2023 27.6)
+                                                                                                               : ... Suggest assign a label with 'begin : gen_<label_name>'
+ 1237 |  generate if (TWO_CYCLE_ALU) begin
+      |                              ^~~~~
+%Warning-GENUNNAMED: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1246:11: Unnamed generate block 'genblk3' (IEEE 1800-2023 27.6)
+                                                                                                               : ... Suggest assign a label with 'begin : gen_<label_name>'
+ 1246 |  end else begin
+      |           ^~~~~
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1414:20: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1414 |   set_mem_do_rinst = 0;
+      |                    ^
+                 ... For warning description see https://verilator.org/warn/BLKSEQ?v=5.055
+                 ... Use "/* verilator lint_off BLKSEQ */" and lint_on around source to disable this message.
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1415:20: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1415 |   set_mem_do_rdata = 0;
+      |                    ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1416:20: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1416 |   set_mem_do_wdata = 0;
+      |                    ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1448:20: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1448 |   next_irq_pending = ENABLE_IRQ ? irq_pending & LATCHED_IRQ : 'bx;
+      |                    ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1482:21: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1482 |    next_irq_pending = 0;
+      |                     ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1503:16: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1503 |     current_pc = reg_next_pc;
+      |                ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1508:18: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1508 |       current_pc = latched_store ? (latched_stalu ? alu_out_q : reg_out) & ~1 : reg_next_pc;
+      |                  ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1515:18: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1515 |       current_pc = PROGADDR_IRQ;
+      |                  ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1521:24: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1521 |       next_irq_pending = next_irq_pending & irq_mask;
+      |                        ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1617:40: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1617 |           next_irq_pending[irq_ebreak] = 1;
+      |                                        ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1628:38: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1628 |         next_irq_pending[irq_ebreak] = 1;
+      |                                      ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1789:38: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1789 |         next_irq_pending[irq_ebreak] = 1;
+      |                                      ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1827:24: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1827 |       set_mem_do_rinst = 1;
+      |                        ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1878:24: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1878 |       set_mem_do_wdata = 1;
+      |                        ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1906:24: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1906 |       set_mem_do_rdata = 1;
+      |                        ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1924:21: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1924 |    next_irq_pending = next_irq_pending | irq;
+      |                     ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1927:34: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1927 |      next_irq_pending[irq_timer] = 1;
+      |                                  ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1934:37: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1934 |      next_irq_pending[irq_buserror] = 1;
+      |                                     ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1941:37: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1941 |      next_irq_pending[irq_buserror] = 1;
+      |                                     ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1949:36: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1949 |     next_irq_pending[irq_buserror] = 1;
+      |                                    ^
+%Warning-BLKSEQ: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1982:14: Blocking assignment '=' in sequential logic process
+                                                                                                           : ... note: In instance 'picorv32_top.core'
+                                                                                                           : ... Suggest using delayed assignment '<='
+ 1982 |   current_pc = 'bx;
+      |              ^
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:181:13: Signal is not used: 'dbg_insn_addr'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  181 |  reg [31:0] dbg_insn_addr;
+      |             ^~~~~~~~~~~~~
+                       ... For warning description see https://verilator.org/warn/UNUSEDSIGNAL?v=5.055
+                       ... Use "/* verilator lint_off UNUSEDSIGNAL */" and lint_on around source to disable this message.
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:183:7: Signal is not used: 'dbg_mem_valid'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  183 |  wire dbg_mem_valid = mem_valid;
+      |       ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:184:7: Signal is not used: 'dbg_mem_instr'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  184 |  wire dbg_mem_instr = mem_instr;
+      |       ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:185:7: Signal is not used: 'dbg_mem_ready'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  185 |  wire dbg_mem_ready = mem_ready;
+      |       ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:186:14: Signal is not used: 'dbg_mem_addr'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  186 |  wire [31:0] dbg_mem_addr  = mem_addr;
+      |              ^~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:187:14: Signal is not used: 'dbg_mem_wdata'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  187 |  wire [31:0] dbg_mem_wdata = mem_wdata;
+      |              ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:188:14: Signal is not used: 'dbg_mem_wstrb'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  188 |  wire [ 3:0] dbg_mem_wstrb = mem_wstrb;
+      |              ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:189:14: Signal is not used: 'dbg_mem_rdata'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  189 |  wire [31:0] dbg_mem_rdata = mem_rdata;
+      |              ^~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:375:7: Signal is not used: 'mem_busy'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  375 |  wire mem_busy = |{mem_do_prefetch, mem_do_rinst, mem_do_rdata, mem_do_wdata};
+      |       ^~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:696:14: Signal is not used: 'dbg_rs1val'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  696 |   reg [31:0] dbg_rs1val;
+      |              ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:697:14: Signal is not used: 'dbg_rs2val'
+                                                                                                                : ... note: In instance 'picorv32_top.core'
+  697 |   reg [31:0] dbg_rs2val;
+      |              ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:698:7: Signal is not used: 'dbg_rs1val_valid'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  698 |   reg dbg_rs1val_valid;
+      |       ^~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:699:7: Signal is not used: 'dbg_rs2val_valid'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  699 |   reg dbg_rs2val_valid;
+      |       ^~~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:769:6: Signal is not used: 'dbg_valid_insn'
+                                                                                                               : ... note: In instance 'picorv32_top.core'
+  769 |  reg dbg_valid_insn;
+      |      ^~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:1192:15: Signal is not used: 'dbg_ascii_state'
+                                                                                                                 : ... note: In instance 'picorv32_top.core'
+ 1192 |   reg [127:0] dbg_ascii_state;
+      |               ^~~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:2212:20: Bits of signal are not used: 'pcpi_insn'[24:15,11:7]
+                                                                                                                 : ... note: In instance 'picorv32_top.core..genblk1.pcpi_mul'
+ 2212 |  input      [31:0] pcpi_insn,
+      |                    ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: <repo>\design\picorv32\candidates\agent_rules_s1_2\picorv32.v:2432:20: Bits of signal are not used: 'pcpi_insn'[24:15,11:7]
+                                                                                                                 : ... note: In instance 'picorv32_top.core.genblk2.pcpi_div'
+ 2432 |  input      [31:0] pcpi_insn,
+      |                    ^~~~~~~~~
+- V e r i l a t i o n   R e p o r t: Verilator 5.055 devel rev v5.054-374-gb3a6da96b (mod)
+- Verilator: Built from 0.271 MB sources in 11 modules, into 0.371 MB in 3 C++ files needing 0.000 MB
+- Verilator: Walltime 0.164 s (elab=0.038, cvt=0.086, bld=0.000); cpu 0.094 s on 1 threads; allocated 22.012 MB

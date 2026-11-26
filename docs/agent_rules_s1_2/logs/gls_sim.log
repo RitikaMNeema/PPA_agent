@@ -1,0 +1,14 @@
+$ vvp -n <repo>\runs\agent_rules_s1_2\power\gls.vvp +firmware=<repo>/build/firmware/firmware.hex +pwr_cycles=20000
+hello world
+lui..OK
+auipc..OK
+j..OK
+jal..OK
+jalr..OK
+beq..OK
+bne..OK
+blt..OK
+bge..
+CYCLES=20001 INSTR_FETCHES=1919 MEM_XFERS=2559
+RESULT: WINDOW
+<repo>\design\picorv32\tb\tb_core.v:113: $finish called at 201021000 (1ps)

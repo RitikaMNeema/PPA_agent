@@ -1,0 +1,18 @@
+
+read_liberty -lib -ignore_miss_dir -setattr blackbox <repo>/pdk/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_verilog -DSYNTHESIS <repo>/design/picorv32/candidates/agent_rules_s1_2/picorv32.v <repo>/runs/agent_rules_s1_2/inputs/top.v
+hierarchy -check -top picorv32_top
+synth -top picorv32_top -flatten
+tee -q -o <repo>/runs/agent_rules_s1_2/synth/pre_map_stat.json stat -json
+dfflibmap -liberty <repo>/pdk/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib -dont_use *probe* -dont_use *lpflow* -dont_use *_ka* -dont_use *sdf* -dont_use *sedf* -dont_use *dlclkp* -dont_use *dlxbn* -dont_use *dlxtn* -dont_use *dlxtp* -dont_use *dlrbn* -dont_use *dlrbp* -dont_use *dlrtn* -dont_use *dlrtp* -dont_use *einv* -dont_use *ebuf* -dont_use *clkdly* -dont_use *_bleeder* -dont_use *dlygate* -dont_use *dlymetal* -dont_use *macro_sparecell* -dont_use *conb*
+abc -liberty <repo>/pdk/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib -D 10000 -script <repo>/runs/agent_rules_s1_2/synth/abc.script -dont_use *probe* -dont_use *lpflow* -dont_use *_ka* -dont_use *sdf* -dont_use *sedf* -dont_use *dlclkp* -dont_use *dlxbn* -dont_use *dlxtn* -dont_use *dlxtp* -dont_use *dlrbn* -dont_use *dlrbp* -dont_use *dlrtn* -dont_use *dlrtp* -dont_use *einv* -dont_use *ebuf* -dont_use *clkdly* -dont_use *_bleeder* -dont_use *dlygate* -dont_use *dlymetal* -dont_use *macro_sparecell* -dont_use *conb*
+setundef -zero
+hilomap -singleton -hicell sky130_fd_sc_hd__conb_1 HI -locell sky130_fd_sc_hd__conb_1 LO
+splitnets
+opt_clean -purge
+tee -q -o <repo>/runs/agent_rules_s1_2/synth/stat.json stat -json -liberty <repo>/pdk/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib
+tee -q -o <repo>/runs/agent_rules_s1_2/synth/stat.txt stat -liberty <repo>/pdk/sky130hd/sky130_fd_sc_hd__tt_025C_1v80.lib
+check -assert
+rename -enumerate
+write_verilog -noattr -noexpr -nohex -nodec <repo>/runs/agent_rules_s1_2/synth/netlist.v
+write_json <repo>/runs/agent_rules_s1_2/synth/netlist.json

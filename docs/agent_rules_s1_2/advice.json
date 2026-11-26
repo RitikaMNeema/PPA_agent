@@ -1,0 +1,1021 @@
+{
+  "tag": "agent_rules_s1_2",
+  "generated": "2026-11-25 22:40:14",
+  "bottlenecks": {
+    "tag": "agent_rules_s1_2",
+    "inputs_sha": "a9bbbd4ffcdb79e0",
+    "rtl_file": "picorv32.v",
+    "ppa": {
+      "area_um2": 110557.3,
+      "num_cells": 10080,
+      "num_ff": 2402,
+      "target_mhz": 100.0,
+      "wns_ns": -1.211,
+      "tns_ns": -4.584,
+      "fmax_mhz": 89.2,
+      "timing_met": false,
+      "workload_cycles": 622382,
+      "cpi": 6.82,
+      "workload_runtime_us_at_fmax": 6977.4,
+      "power_mw_at_target": 12.6055,
+      "energy_per_cycle_pj": 126.06,
+      "workload_energy_uj": 78.457
+    },
+    "params": {
+      "ENABLE_COUNTERS": 1,
+      "ENABLE_COUNTERS64": 1,
+      "ENABLE_REGS_16_31": 1,
+      "ENABLE_REGS_DUALPORT": 0,
+      "LATCHED_MEM_RDATA": 0,
+      "TWO_STAGE_SHIFT": 1,
+      "BARREL_SHIFTER": 0,
+      "TWO_CYCLE_COMPARE": 0,
+      "TWO_CYCLE_ALU": 0,
+      "COMPRESSED_ISA": 1,
+      "CATCH_MISALIGN": 1,
+      "CATCH_ILLINSN": 1,
+      "ENABLE_PCPI": 0,
+      "ENABLE_MUL": 1,
+      "ENABLE_FAST_MUL": 0,
+      "ENABLE_DIV": 1,
+      "ENABLE_IRQ": 1,
+      "ENABLE_IRQ_QREGS": 1,
+      "ENABLE_IRQ_TIMER": 1,
+      "ENABLE_TRACE": 0,
+      "REGS_INIT_ZERO": 0
+    },
+    "synth_opts": {
+      "flatten": true,
+      "abc_script": "speed"
+    },
+    "power": {
+      "available": true,
+      "total_mw": 12.6055,
+      "freq_mhz": 100.0,
+      "clock_share_pct": 95.8,
+      "summary": "12.07 of 12.61 mW (96%) is clock power; average net toggle rate 0.0243/cycle",
+      "items": [
+        {
+          "id": "P1",
+          "name": "cpuregs",
+          "full_name": "core.cpuregs",
+          "metric": 5.2269,
+          "unit": "mW",
+          "share_pct": 41.5,
+          "detail": "1152 flops, toggle rate 0.0002/cycle -> 100.0% of clock edges do no useful work",
+          "n_ff": 1152,
+          "toggle_rate": 0.0002,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "cpuregs",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 203,
+            "decl": "reg [31:0] cpuregs [0:regfile_size-1];",
+            "assign_lines": [
+              1348,
+              1350,
+              1352,
+              209
+            ],
+            "n_assigns": 4,
+            "snippet": " 1345: \talways @(posedge clk) begin\n 1346: \t\tif (resetn && cpuregs_write && latched_rd)\n 1347: `ifdef PICORV32_TESTBUG_001\n 1348: \t\t\tcpuregs[latched_rd ^ 1] <= cpuregs_wrdata;\n 1349: `elsif PICORV32_TESTBUG_002\n 1350: \t\t\tcpuregs[latched_rd] <= cpuregs_wrdata ^ 1;\n 1351: `else"
+          }
+        },
+        {
+          "id": "P2",
+          "name": "pcpi_mul.rd",
+          "full_name": "core.genblk1.genblk1.pcpi_mul.rd",
+          "metric": 0.2904,
+          "unit": "mW",
+          "share_pct": 2.3,
+          "detail": "64 flops, toggle rate 0.0/cycle -> 100.0% of clock edges do no useful work",
+          "n_ff": 64,
+          "toggle_rate": 0.0,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "rd",
+            "module": "picorv32_pcpi_mul",
+            "file": "picorv32.v",
+            "decl_line": 2248,
+            "decl": "reg [63:0] rs1, rs2, rd, rdx;",
+            "assign_lines": [
+              2297,
+              2302
+            ],
+            "n_assigns": 2,
+            "snippet": " 2294: \t\t\telse\n 2295: \t\t\t\trs2 <= $unsigned(pcpi_rs2);\n 2296: \n 2297: \t\t\trd <= 0;\n 2298: \t\t\trdx <= 0;\n 2299: \t\t\tmul_counter <= (instr_any_mulh ? 63 - STEPS_AT_ONCE : 31 - STEPS_AT_ONCE);\n 2300: \t\t\tmul_waiting <= !mul_start;"
+          }
+        },
+        {
+          "id": "P3",
+          "name": "pcpi_mul.next_rs2",
+          "full_name": "core.genblk1.genblk1.pcpi_mul.next_rs2",
+          "metric": 0.2896,
+          "unit": "mW",
+          "share_pct": 2.3,
+          "detail": "63 flops, toggle rate 0.018/cycle -> 98.2% of clock edges do no useful work",
+          "n_ff": 63,
+          "toggle_rate": 0.018,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "next_rs2",
+            "module": "picorv32_pcpi_mul",
+            "file": "picorv32.v",
+            "decl_line": 2249,
+            "decl": "reg [63:0] next_rs1, next_rs2, this_rs2;",
+            "assign_lines": [
+              2261,
+              2277
+            ],
+            "n_assigns": 2,
+            "snippet": " 2258: \t\tnext_rd = rd;\n 2259: \t\tnext_rdx = rdx;\n 2260: \t\tnext_rs1 = rs1;\n 2261: \t\tnext_rs2 = rs2;\n 2262: \n 2263: \t\tfor (i = 0; i < STEPS_AT_ONCE; i=i+1) begin\n 2264: \t\t\tthis_rs2 = next_rs1[0] ? next_rs2 : 0;"
+          }
+        },
+        {
+          "id": "P4",
+          "name": "pcpi_mul.next_rs1",
+          "full_name": "core.genblk1.genblk1.pcpi_mul.next_rs1",
+          "metric": 0.2868,
+          "unit": "mW",
+          "share_pct": 2.3,
+          "detail": "63 flops, toggle rate 0.0061/cycle -> 99.4% of clock edges do no useful work",
+          "n_ff": 63,
+          "toggle_rate": 0.0061,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "next_rs1",
+            "module": "picorv32_pcpi_mul",
+            "file": "picorv32.v",
+            "decl_line": 2249,
+            "decl": "reg [63:0] next_rs1, next_rs2, this_rs2;",
+            "assign_lines": [
+              2260,
+              2276
+            ],
+            "n_assigns": 2,
+            "snippet": " 2257: \talways @* begin\n 2258: \t\tnext_rd = rd;\n 2259: \t\tnext_rdx = rdx;\n 2260: \t\tnext_rs1 = rs1;\n 2261: \t\tnext_rs2 = rs2;\n 2262: \n 2263: \t\tfor (i = 0; i < STEPS_AT_ONCE; i=i+1) begin"
+          }
+        },
+        {
+          "id": "P5",
+          "name": "pcpi_div.divisor",
+          "full_name": "core.genblk2.pcpi_div.divisor",
+          "metric": 0.2858,
+          "unit": "mW",
+          "share_pct": 2.3,
+          "detail": "63 flops, toggle rate 0.0/cycle -> 100.0% of clock edges do no useful work",
+          "n_ff": 63,
+          "toggle_rate": 0.0,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "divisor",
+            "module": "picorv32_pcpi_div",
+            "file": "picorv32.v",
+            "decl_line": 2466,
+            "decl": "reg [62:0] divisor;",
+            "assign_lines": [
+              2483,
+              2506,
+              2510
+            ],
+            "n_assigns": 3,
+            "snippet": " 2480: \t\tif (start) begin\n 2481: \t\t\trunning <= 1;\n 2482: \t\t\tdividend <= (instr_div || instr_rem) && pcpi_rs1[31] ? -pcpi_rs1 : pcpi_rs1;\n 2483: \t\t\tdivisor <= ((instr_div || instr_rem) && pcpi_rs2[31] ? -pcpi_rs2 : pcpi_rs2) << 31;\n 2484: \t\t\toutsign <= (instr_div && (pcpi_rs1[31] != pcpi_rs2[31]) && |pcpi_rs2) || (instr_rem && pcpi_rs1[31]);\n 2485: \t\t\tquotient <= 0;\n 2486: \t\t\tquotient_msk <= 1 << 31;"
+          }
+        },
+        {
+          "id": "P6",
+          "name": "count_cycle",
+          "full_name": "core.count_cycle",
+          "metric": 0.2625,
+          "unit": "mW",
+          "share_pct": 2.1,
+          "detail": "64 flops, toggle rate 0.0312/cycle -> 96.9% of clock edges do no useful work",
+          "n_ff": 64,
+          "toggle_rate": 0.0312,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "count_cycle",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 175,
+            "decl": "reg [63:0] count_cycle, count_instr;",
+            "assign_lines": [
+              1441,
+              1442,
+              1444
+            ],
+            "n_assigns": 3,
+            "snippet": " 1438: \t\tend\n 1439: \n 1440: \t\tif (ENABLE_COUNTERS) begin\n 1441: \t\t\tcount_cycle <= resetn ? count_cycle + 1 : 0;\n 1442: \t\t\tif (!ENABLE_COUNTERS64) count_cycle[63:32] <= 0;\n 1443: \t\tend else begin\n 1444: \t\t\tcount_cycle <= 'bx;"
+          }
+        },
+        {
+          "id": "P7",
+          "name": "count_instr",
+          "full_name": "core.count_instr",
+          "metric": 0.2556,
+          "unit": "mW",
+          "share_pct": 2.0,
+          "detail": "64 flops, toggle rate 0.0034/cycle -> 99.7% of clock edges do no useful work",
+          "n_ff": 64,
+          "toggle_rate": 0.0034,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "count_instr",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 175,
+            "decl": "reg [63:0] count_cycle, count_instr;",
+            "assign_lines": [
+              1445,
+              1469,
+              1572,
+              1573
+            ],
+            "n_assigns": 4,
+            "snippet": " 1442: \t\t\tif (!ENABLE_COUNTERS64) count_cycle[63:32] <= 0;\n 1443: \t\tend else begin\n 1444: \t\t\tcount_cycle <= 'bx;\n 1445: \t\t\tcount_instr <= 'bx;\n 1446: \t\tend\n 1447: \n 1448: \t\tnext_irq_pending = ENABLE_IRQ ? irq_pending & LATCHED_IRQ : 'bx;"
+          }
+        },
+        {
+          "id": "P8",
+          "name": "pcpi_mul.pcpi_rs2",
+          "full_name": "core.genblk1.genblk1.pcpi_mul.pcpi_rs2",
+          "metric": 0.1516,
+          "unit": "mW",
+          "share_pct": 1.2,
+          "detail": "32 flops, toggle rate 0.0354/cycle -> 96.5% of clock edges do no useful work",
+          "n_ff": 32,
+          "toggle_rate": 0.0354,
+          "signature": "clock_gating",
+          "rtl": {
+            "rtl_name": "reg_op2",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1589,
+              1603,
+              1651,
+              1725,
+              1740,
+              1770
+            ],
+            "n_assigns": 6,
+            "snippet": " 1586: \n 1587: \t\t\tcpu_state_ld_rs1: begin\n 1588: \t\t\t\treg_op1 <= 'bx;\n 1589: \t\t\t\treg_op2 <= 'bx;\n 1590: \n 1591: \t\t\t\t(* parallel_case *)\n 1592: \t\t\t\tcase (1'b1)",
+            "note": "netlist name 'pcpi_rs2' is the picorv32_pcpi_mul input port; the flops are core register 'reg_op2' (line 192)"
+          }
+        }
+      ]
+    },
+    "timing": {
+      "available": true,
+      "wns_ns": -1.211,
+      "tns_ns": -4.584,
+      "fmax_mhz": 89.2,
+      "period_ns": 10.0,
+      "summary": "WNS -1.211 ns / TNS -4.584 ns, 9/4132 endpoints failing, Fmax 89.2 MHz",
+      "startpoint_groups": [
+        {
+          "name": "reg_pc",
+          "wns_ns": -1.211
+        },
+        {
+          "name": "pcpi_mul.pcpi_rs1",
+          "wns_ns": -0.706
+        },
+        {
+          "name": "latched_stalu",
+          "wns_ns": -0.333
+        },
+        {
+          "name": "pcpi_div.dividend",
+          "wns_ns": 0.31
+        },
+        {
+          "name": "mem_ready",
+          "wns_ns": 0.691
+        }
+      ],
+      "items": [
+        {
+          "id": "T1",
+          "kind": "path",
+          "name": "reg_pc[1] -> pc_imm_q[31]",
+          "metric": -1.211,
+          "unit": "ns slack",
+          "detail": "logic depth 32, arrival 10.73 ns; ripple-carry adder chain (29 carry cells in series)",
+          "signature": "ripple-carry adder chain (29 carry cells in series)",
+          "cell_mix": {
+            "maj3": 29,
+            "nor2": 1,
+            "o21ai": 1,
+            "xnor2": 1
+          },
+          "logic_depth": 32,
+          "rtl": {
+            "rtl_name": "pc_imm_q",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 1186,
+            "decl": "reg [31:0] pc_imm_q;",
+            "assign_lines": [
+              1189
+            ],
+            "n_assigns": 1,
+            "snippet": " 1186: \treg [31:0] pc_imm_q;\n 1187: \talways @(posedge clk)\n 1188: \t\tif (cpu_state == cpu_state_ld_rs1 || cpu_state == cpu_state_ld_rs2)\n 1189: \t\t\tpc_imm_q <= reg_pc + decoded_imm;\n 1190: \treg [1:0] irq_state;\n 1191: \n 1192: \t`FORMAL_KEEP reg [127:0] dbg_ascii_state;"
+          },
+          "rtl_start": {
+            "rtl_name": "reg_pc",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1466,
+              1534,
+              1975,
+              1978
+            ],
+            "n_assigns": 4,
+            "snippet": " 1463: \t\t\ttrace_data <= 'bx;\n 1464: \n 1465: \t\tif (!resetn) begin\n 1466: \t\t\treg_pc <= PROGADDR_RESET;\n 1467: \t\t\treg_next_pc <= PROGADDR_RESET;\n 1468: \t\t\tif (ENABLE_COUNTERS)\n 1469: \t\t\t\tcount_instr <= 0;"
+          }
+        },
+        {
+          "id": "T2",
+          "kind": "path",
+          "name": "reg_pc[1] -> pc_imm_q[30]",
+          "metric": -0.899,
+          "unit": "ns slack",
+          "detail": "logic depth 31, arrival 10.42 ns; ripple-carry adder chain (28 carry cells in series)",
+          "signature": "ripple-carry adder chain (28 carry cells in series)",
+          "cell_mix": {
+            "maj3": 28,
+            "nor2": 1,
+            "o21ai": 1,
+            "xnor2": 1
+          },
+          "logic_depth": 31,
+          "rtl": {
+            "rtl_name": "pc_imm_q",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 1186,
+            "decl": "reg [31:0] pc_imm_q;",
+            "assign_lines": [
+              1189
+            ],
+            "n_assigns": 1,
+            "snippet": " 1186: \treg [31:0] pc_imm_q;\n 1187: \talways @(posedge clk)\n 1188: \t\tif (cpu_state == cpu_state_ld_rs1 || cpu_state == cpu_state_ld_rs2)\n 1189: \t\t\tpc_imm_q <= reg_pc + decoded_imm;\n 1190: \treg [1:0] irq_state;\n 1191: \n 1192: \t`FORMAL_KEEP reg [127:0] dbg_ascii_state;"
+          },
+          "rtl_start": {
+            "rtl_name": "reg_pc",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1466,
+              1534,
+              1975,
+              1978
+            ],
+            "n_assigns": 4,
+            "snippet": " 1463: \t\t\ttrace_data <= 'bx;\n 1464: \n 1465: \t\tif (!resetn) begin\n 1466: \t\t\treg_pc <= PROGADDR_RESET;\n 1467: \t\t\treg_next_pc <= PROGADDR_RESET;\n 1468: \t\t\tif (ENABLE_COUNTERS)\n 1469: \t\t\t\tcount_instr <= 0;"
+          }
+        },
+        {
+          "id": "T3",
+          "kind": "path",
+          "name": "pcpi_mul.pcpi_rs1[1] -> pcpi_mul.pcpi_rs1[31]",
+          "metric": -0.706,
+          "unit": "ns slack",
+          "detail": "logic depth 32, arrival 10.22 ns; ripple-carry adder chain (8 carry cells in series)",
+          "signature": "ripple-carry adder chain (8 carry cells in series)",
+          "cell_mix": {
+            "a21oi": 9,
+            "maj3": 8,
+            "a311o": 3,
+            "o21ai": 2,
+            "a21o": 2,
+            "xor2": 1
+          },
+          "logic_depth": 32,
+          "rtl": {
+            "rtl_name": "reg_op1",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1588,
+              1596,
+              1650,
+              1706,
+              1714,
+              1722
+            ],
+            "n_assigns": 15,
+            "snippet": " 1585: \t\t\tend\n 1586: \n 1587: \t\t\tcpu_state_ld_rs1: begin\n 1588: \t\t\t\treg_op1 <= 'bx;\n 1589: \t\t\t\treg_op2 <= 'bx;\n 1590: \n 1591: \t\t\t\t(* parallel_case *)",
+            "note": "netlist name 'pcpi_rs1' is the picorv32_pcpi_mul input port; the flops are core register 'reg_op1' (line 191)"
+          },
+          "rtl_start": {
+            "rtl_name": "reg_op1",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1588,
+              1596,
+              1650,
+              1706,
+              1714,
+              1722
+            ],
+            "n_assigns": 15,
+            "snippet": " 1585: \t\t\tend\n 1586: \n 1587: \t\t\tcpu_state_ld_rs1: begin\n 1588: \t\t\t\treg_op1 <= 'bx;\n 1589: \t\t\t\treg_op2 <= 'bx;\n 1590: \n 1591: \t\t\t\t(* parallel_case *)",
+            "note": "netlist name 'pcpi_rs1' is the picorv32_pcpi_mul input port; the flops are core register 'reg_op1' (line 191)"
+          }
+        },
+        {
+          "id": "T4",
+          "kind": "endpoint_group",
+          "name": "pc_imm_q",
+          "metric": -1.211,
+          "unit": "ns WNS",
+          "detail": "4/64 bits failing",
+          "signature": "failing",
+          "rtl": {
+            "rtl_name": "pc_imm_q",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 1186,
+            "decl": "reg [31:0] pc_imm_q;",
+            "assign_lines": [
+              1189
+            ],
+            "n_assigns": 1,
+            "snippet": " 1186: \treg [31:0] pc_imm_q;\n 1187: \talways @(posedge clk)\n 1188: \t\tif (cpu_state == cpu_state_ld_rs1 || cpu_state == cpu_state_ld_rs2)\n 1189: \t\t\tpc_imm_q <= reg_pc + decoded_imm;\n 1190: \treg [1:0] irq_state;\n 1191: \n 1192: \t`FORMAL_KEEP reg [127:0] dbg_ascii_state;"
+          }
+        },
+        {
+          "id": "T5",
+          "kind": "endpoint_group",
+          "name": "pcpi_mul.pcpi_rs1",
+          "metric": -0.706,
+          "unit": "ns WNS",
+          "detail": "3/64 bits failing",
+          "signature": "failing",
+          "rtl": {
+            "rtl_name": "reg_op1",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1588,
+              1596,
+              1650,
+              1706,
+              1714,
+              1722
+            ],
+            "n_assigns": 15,
+            "snippet": " 1585: \t\t\tend\n 1586: \n 1587: \t\t\tcpu_state_ld_rs1: begin\n 1588: \t\t\t\treg_op1 <= 'bx;\n 1589: \t\t\t\treg_op2 <= 'bx;\n 1590: \n 1591: \t\t\t\t(* parallel_case *)",
+            "note": "netlist name 'pcpi_rs1' is the picorv32_pcpi_mul input port; the flops are core register 'reg_op1' (line 191)"
+          }
+        },
+        {
+          "id": "T6",
+          "kind": "endpoint_group",
+          "name": "reg_next_pc",
+          "metric": -0.333,
+          "unit": "ns WNS",
+          "detail": "2/32 bits failing",
+          "signature": "failing",
+          "rtl": {
+            "rtl_name": "reg_next_pc",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1467,
+              1535,
+              1560,
+              1568,
+              1577,
+              1976
+            ],
+            "n_assigns": 7,
+            "snippet": " 1464: \n 1465: \t\tif (!resetn) begin\n 1466: \t\t\treg_pc <= PROGADDR_RESET;\n 1467: \t\t\treg_next_pc <= PROGADDR_RESET;\n 1468: \t\t\tif (ENABLE_COUNTERS)\n 1469: \t\t\t\tcount_instr <= 0;\n 1470: \t\t\tlatched_store <= 0;"
+          }
+        },
+        {
+          "id": "T7",
+          "kind": "endpoint_group",
+          "name": "alu_out_q",
+          "metric": 0.201,
+          "unit": "ns WNS",
+          "detail": "near-critical (32 bits, 0.201 ns margin)",
+          "signature": "near-critical",
+          "rtl": {
+            "rtl_name": "alu_out_q",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 1229,
+            "decl": "reg [31:0] alu_out, alu_out_q;",
+            "assign_lines": [
+              1419
+            ],
+            "n_assigns": 1,
+            "snippet": " 1416: \t\tset_mem_do_wdata = 0;\n 1417: \n 1418: \t\talu_out_0_q <= alu_out_0;\n 1419: \t\talu_out_q <= alu_out;\n 1420: \n 1421: \t\talu_wait <= 0;\n 1422: \t\talu_wait_2 <= 0;"
+          }
+        },
+        {
+          "id": "T8",
+          "kind": "endpoint_group",
+          "name": "pcpi_div.dividend",
+          "metric": 0.31,
+          "unit": "ns WNS",
+          "detail": "near-critical (64 bits, 0.31 ns margin)",
+          "signature": "near-critical",
+          "rtl": {
+            "rtl_name": "dividend",
+            "module": "picorv32_pcpi_div",
+            "file": "picorv32.v",
+            "decl_line": 2465,
+            "decl": "reg [31:0] dividend;",
+            "assign_lines": [
+              2482,
+              2507
+            ],
+            "n_assigns": 2,
+            "snippet": " 2479: \t\tend else\n 2480: \t\tif (start) begin\n 2481: \t\t\trunning <= 1;\n 2482: \t\t\tdividend <= (instr_div || instr_rem) && pcpi_rs1[31] ? -pcpi_rs1 : pcpi_rs1;\n 2483: \t\t\tdivisor <= ((instr_div || instr_rem) && pcpi_rs2[31] ? -pcpi_rs2 : pcpi_rs2) << 31;\n 2484: \t\t\toutsign <= (instr_div && (pcpi_rs1[31] != pcpi_rs2[31]) && |pcpi_rs2) || (instr_rem && pcpi_rs1[31]);\n 2485: \t\t\tquotient <= 0;"
+          }
+        }
+      ]
+    },
+    "congestion": {
+      "available": true,
+      "proxy": true,
+      "summary": "pre-placement proxy: 37,522 pins over 110,557 um2 cell area (avg 0.34 pins/um2); largest cone reg_out = 22% of all pins",
+      "avg_pin_density": 0.339,
+      "items": [
+        {
+          "id": "C1",
+          "kind": "logic_cone",
+          "name": "reg_out",
+          "metric": 8174,
+          "unit": "pins",
+          "share_pct": 21.8,
+          "detail": "2,031 cells feed 32 flops (77 muxes); pin density 0.67/um2 vs design avg 0.34",
+          "signature": "wide cone",
+          "rtl": {
+            "rtl_name": "reg_out",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1413,
+              1489,
+              1559,
+              1609,
+              1638,
+              1640
+            ],
+            "n_assigns": 20,
+            "snippet": " 1410: \talways @(posedge clk) begin\n 1411: \t\ttrap <= 0;\n 1412: \t\treg_sh <= 'bx;\n 1413: \t\treg_out <= 'bx;\n 1414: \t\tset_mem_do_rinst = 0;\n 1415: \t\tset_mem_do_rdata = 0;\n 1416: \t\tset_mem_do_wdata = 0;"
+          }
+        },
+        {
+          "id": "C2",
+          "kind": "logic_cone",
+          "name": "pcpi_mul.pcpi_rs1",
+          "metric": 7928,
+          "unit": "pins",
+          "share_pct": 21.1,
+          "detail": "2,045 cells feed 32 flops (78 muxes); pin density 0.64/um2 vs design avg 0.34",
+          "signature": "wide cone",
+          "rtl": {
+            "rtl_name": "reg_op1",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 176,
+            "decl": "reg [31:0] reg_pc, reg_next_pc, reg_op1, reg_op2, reg_out;",
+            "assign_lines": [
+              1588,
+              1596,
+              1650,
+              1706,
+              1714,
+              1722
+            ],
+            "n_assigns": 15,
+            "snippet": " 1585: \t\t\tend\n 1586: \n 1587: \t\t\tcpu_state_ld_rs1: begin\n 1588: \t\t\t\treg_op1 <= 'bx;\n 1589: \t\t\t\treg_op2 <= 'bx;\n 1590: \n 1591: \t\t\t\t(* parallel_case *)",
+            "note": "netlist name 'pcpi_rs1' is the picorv32_pcpi_mul input port; the flops are core register 'reg_op1' (line 191)"
+          }
+        },
+        {
+          "id": "C3",
+          "kind": "logic_cone",
+          "name": "timer",
+          "metric": 6714,
+          "unit": "pins",
+          "share_pct": 17.9,
+          "detail": "1,712 cells feed 32 flops (76 muxes); pin density 0.66/um2 vs design avg 0.34",
+          "signature": "wide cone",
+          "rtl": {
+            "rtl_name": "timer",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 200,
+            "decl": "reg [31:0] timer;",
+            "assign_lines": [
+              1451,
+              1485,
+              1699
+            ],
+            "n_assigns": 3,
+            "snippet": " 1448: \t\tnext_irq_pending = ENABLE_IRQ ? irq_pending & LATCHED_IRQ : 'bx;\n 1449: \n 1450: \t\tif (ENABLE_IRQ && ENABLE_IRQ_TIMER && timer) begin\n 1451: \t\t\ttimer <= timer - 1;\n 1452: \t\tend\n 1453: \n 1454: \t\tdecoder_trigger <= mem_do_rinst && mem_done;"
+          }
+        },
+        {
+          "id": "C4",
+          "kind": "logic_cone",
+          "name": "irq_mask",
+          "metric": 6456,
+          "unit": "pins",
+          "share_pct": 17.2,
+          "detail": "1,639 cells feed 32 flops (76 muxes); pin density 0.67/um2 vs design avg 0.34",
+          "signature": "wide cone",
+          "rtl": {
+            "rtl_name": "irq_mask",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 198,
+            "decl": "reg [31:0] irq_mask;",
+            "assign_lines": [
+              1481,
+              1690
+            ],
+            "n_assigns": 2,
+            "snippet": " 1478: \t\t\tpcpi_timeout <= 0;\n 1479: \t\t\tirq_active <= 0;\n 1480: \t\t\tirq_delay <= 0;\n 1481: \t\t\tirq_mask <= ~0;\n 1482: \t\t\tnext_irq_pending = 0;\n 1483: \t\t\tirq_state <= 0;\n 1484: \t\t\teoi <= 0;"
+          }
+        },
+        {
+          "id": "C5",
+          "kind": "high_fanout",
+          "name": "resetn",
+          "metric": 427,
+          "unit": "fanout",
+          "detail": "max fanout 427 on one bit (1 bits, 427 sinks total)",
+          "signature": "high-fanout net",
+          "rtl": {
+            "rtl_name": "resetn",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 90,
+            "decl": "input clk, resetn,",
+            "assign_lines": [],
+            "n_assigns": 0,
+            "snippet": "   87: \tparameter [31:0] PROGADDR_IRQ = 32'h 0000_0010,\n   88: \tparameter [31:0] STACKADDR = 32'h ffff_ffff\n   89: ) (\n   90: \tinput clk, resetn,\n   91: \toutput reg trap,\n   92: \n   93: \toutput reg        mem_valid,"
+          }
+        },
+        {
+          "id": "C6",
+          "kind": "high_fanout",
+          "name": "pcpi_mul.mul_waiting",
+          "metric": 230,
+          "unit": "fanout",
+          "detail": "max fanout 230 on one bit (1 bits, 230 sinks total)",
+          "signature": "high-fanout net",
+          "rtl": {
+            "rtl_name": "mul_waiting",
+            "module": "picorv32_pcpi_mul",
+            "file": "picorv32.v",
+            "decl_line": 2252,
+            "decl": "reg mul_waiting;",
+            "assign_lines": [
+              2284,
+              2300,
+              2310
+            ],
+            "n_assigns": 3,
+            "snippet": " 2281: \talways @(posedge clk) begin\n 2282: \t\tmul_finish <= 0;\n 2283: \t\tif (!resetn) begin\n 2284: \t\t\tmul_waiting <= 1;\n 2285: \t\tend else\n 2286: \t\tif (mul_waiting) begin\n 2287: \t\t\tif (instr_rs1_signed)"
+          }
+        },
+        {
+          "id": "C7",
+          "kind": "high_fanout",
+          "name": "pcpi_mul.rs1",
+          "metric": 127,
+          "unit": "fanout",
+          "detail": "max fanout 127 on one bit (1 bits, 127 sinks total)",
+          "signature": "high-fanout net",
+          "rtl": {
+            "rtl_name": "rs1",
+            "module": "picorv32_pcpi_mul",
+            "file": "picorv32.v",
+            "decl_line": 2248,
+            "decl": "reg [63:0] rs1, rs2, rd, rdx;",
+            "assign_lines": [
+              2288,
+              2290,
+              2304
+            ],
+            "n_assigns": 3,
+            "snippet": " 2285: \t\tend else\n 2286: \t\tif (mul_waiting) begin\n 2287: \t\t\tif (instr_rs1_signed)\n 2288: \t\t\t\trs1 <= $signed(pcpi_rs1);\n 2289: \t\t\telse\n 2290: \t\t\t\trs1 <= $unsigned(pcpi_rs1);\n 2291: "
+          }
+        },
+        {
+          "id": "C8",
+          "kind": "high_fanout",
+          "name": "cpu_state",
+          "metric": 119,
+          "unit": "fanout",
+          "detail": "max fanout 119 on one bit (8 bits, 402 sinks total)",
+          "signature": "high-fanout net",
+          "rtl": {
+            "rtl_name": "cpu_state",
+            "module": "picorv32",
+            "file": "picorv32.v",
+            "decl_line": 1181,
+            "decl": "reg [7:0] cpu_state;",
+            "assign_lines": [
+              1491,
+              1582,
+              1611,
+              1618,
+              1620,
+              1623
+            ],
+            "n_assigns": 37,
+            "snippet": " 1488: \t\t\t\tlatched_rd <= 2;\n 1489: \t\t\t\treg_out <= STACKADDR;\n 1490: \t\t\tend\n 1491: \t\t\tcpu_state <= cpu_state_fetch;\n 1492: \t\tend else\n 1493: \t\t(* parallel_case, full_case *)\n 1494: \t\tcase (cpu_state)"
+          }
+        }
+      ]
+    }
+  },
+  "rules": {
+    "power": {
+      "diagnosis": "12.07 of 12.61 mW (96%) is clock power; average net toggle rate 0.0243/cycle",
+      "suggestions": [
+        {
+          "bottleneck_ids": [
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6",
+            "P7",
+            "P8"
+          ],
+          "title": "Clock-gate rarely-written registers",
+          "kind": "synth_knob",
+          "rtl_location": "n/a",
+          "rationale": "8 register groups (7.05 mW) are clocked every cycle but toggle on <5% of cycles; their power is almost entirely clock-pin energy.",
+          "change": "synth: clockgate=on (Yosys `clockgate -liberty ... -pos sky130_fd_sc_hd__dlclkp_1 CLK GATE GCLK`); registers with an enable (edfxtp/mux feedback) become ICG-gated groups",
+          "expected_power": "up to -4.9 mW (most of the clock-pin share of these groups)",
+          "expected_timing": "neutral; ICG enable path adds a setup check",
+          "expected_area": "slightly smaller (enable muxes removed)",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level) + eqy (cycle-exact)",
+          "confidence": "medium",
+          "edits": [],
+          "params": [],
+          "patch_id": null
+        },
+        {
+          "bottleneck_ids": [
+            "P1"
+          ],
+          "title": "Per-word write-enable clock gating of the register file",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:1348,1350,1352",
+          "rationale": "cpuregs = 5.2269 mW (41.5% of total), 1152 flops, toggle rate 0.0002: only one 32-bit word is written per instruction.",
+          "change": "generate one ICG per word: `sky130_fd_sc_hd__dlclkp_1 icg_i (.CLK(clk), .GATE(cpuregs_write && latched_rd==i), .GCLK(gclk[i]));`\nalways @(posedge gclk[i]) cpuregs[i] <= cpuregs_wrdata;",
+          "expected_power": "-4.2 to -4.7 mW",
+          "expected_timing": "neutral",
+          "expected_area": "~36 ICG cells added, enable muxes removed",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level) + eqy (cycle-exact)",
+          "confidence": "medium",
+          "edits": [],
+          "params": [],
+          "patch_id": null
+        },
+        {
+          "bottleneck_ids": [
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P8"
+          ],
+          "title": "Operand isolation for the idle multiplier",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:2297,2302",
+          "rationale": "while idle (mul_waiting) the multiplier copies pcpi_rs1/pcpi_rs2 into its 64-bit rs1/rs2 shift registers and zeroes rd/rdx every cycle, even when no MUL is in flight.",
+          "change": "capture operands only on `mul_start`; otherwise hold. (The divider has the same pattern - not patched yet.)",
+          "expected_power": "less data switching in the mul datapath (clock-pin power remains until clock gating)",
+          "expected_timing": "neutral",
+          "expected_area": "neutral",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level); outputs cycle-exact, internal rs1/rs2/rd state differs while idle",
+          "confidence": "medium",
+          "edits": [
+            {
+              "file": "picorv32.v",
+              "search": "\t\tif (mul_waiting) begin\n\t\t\tif (instr_rs1_signed)\n",
+              "replace": "\t\tif (mul_waiting) begin\n\t\t\t// PPA: operand isolation - only capture operands when a MUL actually starts,\n\t\t\t// instead of copying pcpi_rs1/rs2 into the 64-bit shift registers every idle cycle\n\t\t\tif (mul_start) begin\n\t\t\tif (instr_rs1_signed)\n"
+            },
+            {
+              "file": "picorv32.v",
+              "search": "\t\t\tmul_waiting <= !mul_start;\n",
+              "replace": "\t\t\tend\n\t\t\tmul_waiting <= !mul_start;\n"
+            }
+          ],
+          "params": [],
+          "patch_id": "mul_operand_hold"
+        },
+        {
+          "bottleneck_ids": [
+            "P6",
+            "P7"
+          ],
+          "title": "Gate upper halves of 64-bit counters",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:1441,1442,1444",
+          "rationale": "upper 32 bits of count_cycle/count_instr change once per 2^32 increments but are clocked every cycle.",
+          "change": "split into lo/hi; `if (&lo) hi <= hi + 1;` so the hi word is enable-only (gatable)",
+          "expected_power": "small now (adder switching); large once clock gating is on (hi word becomes enable-only)",
+          "expected_timing": "32-bit instead of 64-bit increment carry chain",
+          "expected_area": "neutral",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level) + eqy (cycle-exact)",
+          "confidence": "high",
+          "edits": [
+            {
+              "file": "picorv32.v",
+              "search": "\t\t\tcount_cycle <= resetn ? count_cycle + 1 : 0;\n",
+              "replace": "\t\t\t// PPA: upper word only updates on carry-out of the lower word (enable-only, gatable)\n\t\t\tcount_cycle[31:0] <= resetn ? count_cycle[31:0] + 1 : 0;\n\t\t\tif (!resetn) count_cycle[63:32] <= 0;\n\t\t\telse if (&count_cycle[31:0]) count_cycle[63:32] <= count_cycle[63:32] + 1;\n"
+            },
+            {
+              "file": "picorv32.v",
+              "search": "\t\t\t\t\t\tcount_instr <= count_instr + 1;\n",
+              "replace": "\t\t\t\t\t\t// PPA: upper word only updates on carry-out of the lower word\n\t\t\t\t\t\tcount_instr[31:0] <= count_instr[31:0] + 1;\n\t\t\t\t\t\tif (&count_instr[31:0]) count_instr[63:32] <= count_instr[63:32] + 1;\n"
+            }
+          ],
+          "params": [],
+          "patch_id": "counters_hi_gate"
+        }
+      ]
+    },
+    "timing": {
+      "diagnosis": "WNS -1.211 ns / TNS -4.584 ns, 9/4132 endpoints failing, Fmax 89.2 MHz",
+      "suggestions": [
+        {
+          "bottleneck_ids": [
+            "T1",
+            "T2",
+            "T3"
+          ],
+          "title": "Parallel-prefix adder for the PC/immediate adder",
+          "kind": "synth_knob",
+          "rtl_location": "picorv32.v:1189",
+          "rationale": "critical path reg_pc[1] -> pc_imm_q[31] has slack -1.211 ns, depth 32: ripple-carry adder chain (29 carry cells in series).",
+          "change": "synth: adder=kogge-stone (or sklansky) via Yosys `techmap -map +/choices/kogge-stone.v` before abc",
+          "expected_power": "small increase (more cells toggling)",
+          "expected_timing": "recover the 1.21 ns deficit; 32-bit KS ~= 6-7 levels vs 32",
+          "expected_area": "+1-3% comb area",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level) + eqy (cycle-exact)",
+          "confidence": "medium",
+          "edits": [],
+          "params": [],
+          "patch_id": null
+        },
+        {
+          "bottleneck_ids": [
+            "T1",
+            "T2",
+            "T3"
+          ],
+          "title": "Precompute branch/jump target one state earlier",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:1467,1535,1560",
+          "rationale": "reg_pc + decoded_imm and the next-PC mux are evaluated in the same cycle as their use; both operands are stable from decode.",
+          "change": "add `reg [31:0] pc_plus_imm; always @(posedge clk) pc_plus_imm <= reg_pc + decoded_imm;` in the fetch/decode state and use it in cpu_state_exec",
+          "expected_power": "+32 flops (~+0.1 mW)",
+          "expected_timing": "removes the adder from the exec-cycle reg_out path",
+          "expected_area": "+32 flops",
+          "functional_risk": "medium",
+          "verification": "lint + firmware regression (RTL & gate-level) + STA; cycle-exact at the ports",
+          "confidence": "medium",
+          "edits": [
+            {
+              "file": "picorv32.v",
+              "search": "\treg [7:0] cpu_state;\n",
+              "replace": "\treg [7:0] cpu_state;\n\n\t// PPA (timing): branch/JAL target precomputed while in ld_rs1/ld_rs2. exec is only\n\t// entered from those states and reg_pc/decoded_imm are stable there, so the 32-bit\n\t// adder leaves the exec-cycle reg_out path.\n\treg [31:0] pc_imm_q;\n\talways @(posedge clk)\n\t\tif (cpu_state == cpu_state_ld_rs1 || cpu_state == cpu_state_ld_rs2)\n\t\t\tpc_imm_q <= reg_pc + decoded_imm;\n"
+            },
+            {
+              "file": "picorv32.v",
+              "search": "\t\t\t\treg_out <= reg_pc + decoded_imm;\n",
+              "replace": "\t\t\t\treg_out <= pc_imm_q;\n"
+            }
+          ],
+          "params": [],
+          "patch_id": "pc_imm_precompute"
+        },
+        {
+          "bottleneck_ids": [],
+          "title": "Try TWO_CYCLE_ALU / TWO_CYCLE_COMPARE",
+          "kind": "param_knob",
+          "rtl_location": "n/a",
+          "rationale": "the ALU result path is near-critical (alu_out_q) and shares the operand muxes.",
+          "change": "params: TWO_CYCLE_ALU=1 and/or TWO_CYCLE_COMPARE=1",
+          "expected_power": "neutral",
+          "expected_timing": "cuts ALU/compare paths; CPI rises slightly",
+          "expected_area": "+~70 flops",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level); cycle count may change",
+          "confidence": "medium",
+          "edits": [],
+          "params": [
+            {
+              "name": "TWO_CYCLE_ALU",
+              "value": 1
+            }
+          ],
+          "patch_id": "two_cycle_alu"
+        }
+      ]
+    },
+    "congestion": {
+      "diagnosis": "pre-placement proxy: 37,522 pins over 110,557 um2 cell area (avg 0.34 pins/um2); largest cone reg_out = 22% of all pins",
+      "suggestions": [
+        {
+          "bottleneck_ids": [
+            "C1",
+            "C2",
+            "C3",
+            "C4"
+          ],
+          "title": "Decouple the register-file read mux from the ALU operand cones",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:1413,1489,1559",
+          "rationale": "the largest cones (reg_out, pcpi_mul.pcpi_rs1, timer) each hold ~2k cells and ~2x the design-average pin density - they share the 36:1 cpuregs read mux plus the ALU.",
+          "change": "register the read data (`reg_op1/reg_op2` from a dedicated read stage) or enable ENABLE_REGS_DUALPORT=1 so rs1/rs2 reads are separate, narrower muxes",
+          "expected_power": "neutral",
+          "expected_timing": "shortens operand paths",
+          "expected_area": "dual-port: +~1-2% area",
+          "functional_risk": "low",
+          "verification": "lint + firmware regression (RTL & gate-level); cycle count may change",
+          "confidence": "medium",
+          "edits": [],
+          "params": [
+            {
+              "name": "ENABLE_REGS_DUALPORT",
+              "value": 1
+            }
+          ],
+          "patch_id": "regs_dualport"
+        },
+        {
+          "bottleneck_ids": [
+            "C5",
+            "C6",
+            "C7",
+            "C8"
+          ],
+          "title": "Replicate / pipeline high-fanout control nets",
+          "kind": "rtl_rewrite",
+          "rtl_location": "picorv32.v:90",
+          "rationale": "resetn: max fanout 427 on one bit (1 bits, 427 sinks total); pcpi_mul.mul_waiting: max fanout 230 on one bit (1 bits, 230 sinks total); pcpi_mul.rs1: max fanout 127 on one bit (1 bits, 127 sinks total)",
+          "change": "resetn: synchronise once and fan out from a buffered reset tree (or drop reset on datapath flops that do not need it); mul_waiting/cpu_state: one-hot decode registered per consumer group",
+          "expected_power": "slightly lower (fewer buffers)",
+          "expected_timing": "removes buffer chains on control nets",
+          "expected_area": "fewer buffers",
+          "functional_risk": "medium",
+          "verification": "lint + firmware regression (RTL & gate-level) + eqy (cycle-exact)",
+          "confidence": "medium",
+          "edits": [],
+          "params": [],
+          "patch_id": null
+        }
+      ]
+    },
+    "overall_summary": "Rule-based draft for agent_rules_s1_2: clock power dominates (95.8%), timing is limited by ripple-carry adder chain (29 carry cells in series).",
+    "next_iteration_plan": [
+      "Clock-gate rarely-written registers",
+      "Parallel-prefix adder for the PC/immediate adder",
+      "Decouple the register-file read mux from the ALU operand cones"
+    ]
+  },
+  "llm": null,
+  "llm_error": "not requested yet"
+}

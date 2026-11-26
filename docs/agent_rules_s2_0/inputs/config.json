@@ -1,0 +1,36 @@
+{
+  "design": "picorv32",
+  "top": "picorv32_top",
+  "core": "picorv32",
+  "sdc": "constraints/picorv32.sdc",
+  "rtl": [
+    "design/picorv32/candidates/agent_rules_s2_0/picorv32.v"
+  ],
+  "params": {
+    "ENABLE_COUNTERS": 1,
+    "ENABLE_COUNTERS64": 1,
+    "ENABLE_REGS_16_31": 1,
+    "ENABLE_REGS_DUALPORT": 1,
+    "LATCHED_MEM_RDATA": 0,
+    "TWO_STAGE_SHIFT": 1,
+    "BARREL_SHIFTER": 0,
+    "TWO_CYCLE_COMPARE": 0,
+    "TWO_CYCLE_ALU": 0,
+    "COMPRESSED_ISA": 1,
+    "CATCH_MISALIGN": 1,
+    "CATCH_ILLINSN": 1,
+    "ENABLE_PCPI": 0,
+    "ENABLE_MUL": 1,
+    "ENABLE_FAST_MUL": 0,
+    "ENABLE_DIV": 1,
+    "ENABLE_IRQ": 1,
+    "ENABLE_IRQ_QREGS": 1,
+    "ENABLE_IRQ_TIMER": 1,
+    "ENABLE_TRACE": 0,
+    "REGS_INIT_ZERO": 0
+  },
+  "synth": {
+    "flatten": true,
+    "abc_script": "speed"
+  }
+}

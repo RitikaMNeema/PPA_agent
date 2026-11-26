@@ -1,0 +1,478 @@
+{
+  "tag": "agent_rules_s1_1",
+  "design": "picorv32",
+  "status": "ok",
+  "inputs_sha": "38e0f9f458f81846",
+  "params": {
+    "ENABLE_COUNTERS": 1,
+    "ENABLE_COUNTERS64": 1,
+    "ENABLE_REGS_16_31": 1,
+    "ENABLE_REGS_DUALPORT": 0,
+    "LATCHED_MEM_RDATA": 0,
+    "TWO_STAGE_SHIFT": 1,
+    "BARREL_SHIFTER": 0,
+    "TWO_CYCLE_COMPARE": 0,
+    "TWO_CYCLE_ALU": 0,
+    "COMPRESSED_ISA": 1,
+    "CATCH_MISALIGN": 1,
+    "CATCH_ILLINSN": 1,
+    "ENABLE_PCPI": 0,
+    "ENABLE_MUL": 1,
+    "ENABLE_FAST_MUL": 0,
+    "ENABLE_DIV": 1,
+    "ENABLE_IRQ": 1,
+    "ENABLE_IRQ_QREGS": 1,
+    "ENABLE_IRQ_TIMER": 1,
+    "ENABLE_TRACE": 0,
+    "REGS_INIT_ZERO": 0
+  },
+  "synth_opts": {
+    "flatten": true,
+    "abc_script": "speed"
+  },
+  "constraints": {
+    "period": 10.0,
+    "uncertainty": 0.25,
+    "clk_slew": 0.15,
+    "io_delay": 2.0,
+    "po_load": 0.0175,
+    "false_from": [
+      "resetn"
+    ],
+    "clock_port": "clk"
+  },
+  "stages": {
+    "lint": {
+      "ok": true,
+      "errors": 0,
+      "warnings": 58,
+      "seconds": 0.2
+    },
+    "rtl_sim": {
+      "pass": true,
+      "fail_reason": null,
+      "cycles": 622382,
+      "instr_fetches": 91292,
+      "seconds": 31.3
+    },
+    "synth": {
+      "ok": true,
+      "seconds": 37.5,
+      "area_um2": 109702.7,
+      "seq_area_um2": 65893.2,
+      "comb_area_um2": 43809.5,
+      "num_cells": 10168,
+      "num_ff": 2370,
+      "cell_families_top": [
+        [
+          "edfxtp",
+          1843
+        ],
+        [
+          "o21ai",
+          1112
+        ],
+        [
+          "nor2",
+          1090
+        ],
+        [
+          "a21oi",
+          972
+        ],
+        [
+          "nand2",
+          911
+        ],
+        [
+          "dfxtp",
+          527
+        ],
+        [
+          "clkbuf",
+          390
+        ],
+        [
+          "xnor2",
+          244
+        ],
+        [
+          "o22ai",
+          223
+        ],
+        [
+          "nand2b",
+          218
+        ],
+        [
+          "nor3",
+          179
+        ],
+        [
+          "a221oi",
+          178
+        ]
+      ],
+      "timing": {
+        "clock_period_ns": 10.0,
+        "clk_to_q_ns": 0.373,
+        "setup_ns": 0.27,
+        "uncertainty_ns": 0.25,
+        "comb_delay_ns": 9.833,
+        "arrival_ns": 10.207,
+        "required_ns": 9.48,
+        "wns_ns": -0.727,
+        "min_period_ns": 10.727,
+        "fmax_mhz": 93.2,
+        "abc_critical_path": []
+      }
+    },
+    "sta": {
+      "clock_period_ns": 10.0,
+      "uncertainty_ns": 0.25,
+      "wns_ns": -10.921,
+      "tns_ns": -1921.538,
+      "n_endpoints": 4282,
+      "n_failing": 230,
+      "min_period_ns": 20.921,
+      "fmax_mhz": 47.8,
+      "critical_arrival_ns": 20.579,
+      "comb_loops_skipped": 0,
+      "critical_paths": [
+        {
+          "endpoint": "core.genblk1.genblk1.pcpi_mul.mul_waiting (dfxtp_1/D)",
+          "startpoint": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+          "slack_ns": -10.921,
+          "required_ns": 9.658,
+          "arrival_ns": 20.579,
+          "logic_depth": 2,
+          "path": [
+            {
+              "net": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+              "cell": "dfxtp_1",
+              "incr": 3.932,
+              "arrival": 3.932
+            },
+            {
+              "net": "_4256_",
+              "cell": "a21oi_1",
+              "incr": 14.43,
+              "arrival": 18.362
+            },
+            {
+              "net": "_2173_",
+              "cell": "o21ai_0",
+              "incr": 2.217,
+              "arrival": 20.579
+            }
+          ]
+        },
+        {
+          "endpoint": "core.genblk1.genblk1.pcpi_mul.mul_counter[0] (edfxtp_1/DE)",
+          "startpoint": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+          "slack_ns": -8.882,
+          "required_ns": 9.48,
+          "arrival_ns": 18.362,
+          "logic_depth": 1,
+          "path": [
+            {
+              "net": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+              "cell": "dfxtp_1",
+              "incr": 3.932,
+              "arrival": 3.932
+            },
+            {
+              "net": "_4256_",
+              "cell": "a21oi_1",
+              "incr": 14.43,
+              "arrival": 18.362
+            }
+          ]
+        },
+        {
+          "endpoint": "core.genblk1.genblk1.pcpi_mul.mul_counter[5] (edfxtp_1/DE)",
+          "startpoint": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+          "slack_ns": -8.882,
+          "required_ns": 9.48,
+          "arrival_ns": 18.362,
+          "logic_depth": 1,
+          "path": [
+            {
+              "net": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+              "cell": "dfxtp_1",
+              "incr": 3.932,
+              "arrival": 3.932
+            },
+            {
+              "net": "_4256_",
+              "cell": "a21oi_1",
+              "incr": 14.43,
+              "arrival": 18.362
+            }
+          ]
+        }
+      ],
+      "worst_endpoint_groups": [
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+          "wns_ns": -10.921,
+          "n_failing": 1,
+          "n_endpoints": 1
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.mul_counter",
+          "wns_ns": -8.882,
+          "n_failing": 7,
+          "n_endpoints": 14
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.rdx",
+          "wns_ns": -8.882,
+          "n_failing": 15,
+          "n_endpoints": 30
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.next_rs2",
+          "wns_ns": -8.882,
+          "n_failing": 63,
+          "n_endpoints": 126
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.rd",
+          "wns_ns": -8.882,
+          "n_failing": 64,
+          "n_endpoints": 128
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.next_rs1",
+          "wns_ns": -8.882,
+          "n_failing": 63,
+          "n_endpoints": 126
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.rs1",
+          "wns_ns": -8.882,
+          "n_failing": 1,
+          "n_endpoints": 2
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.rs2",
+          "wns_ns": -8.882,
+          "n_failing": 1,
+          "n_endpoints": 2
+        },
+        {
+          "endpoint_group": "core.reg_out",
+          "wns_ns": -1.375,
+          "n_failing": 4,
+          "n_endpoints": 32
+        },
+        {
+          "endpoint_group": "core.alu_out_q",
+          "wns_ns": -1.167,
+          "n_failing": 5,
+          "n_endpoints": 32
+        },
+        {
+          "endpoint_group": "core.reg_next_pc",
+          "wns_ns": -0.971,
+          "n_failing": 5,
+          "n_endpoints": 32
+        },
+        {
+          "endpoint_group": "core.genblk1.genblk1.pcpi_mul.pcpi_rs1",
+          "wns_ns": -0.501,
+          "n_failing": 1,
+          "n_endpoints": 64
+        },
+        {
+          "endpoint_group": "core.genblk2.pcpi_div.dividend",
+          "wns_ns": 0.106,
+          "n_failing": 0,
+          "n_endpoints": 64
+        },
+        {
+          "endpoint_group": "core.dbg_mem_addr",
+          "wns_ns": 0.241,
+          "n_failing": 0,
+          "n_endpoints": 90
+        },
+        {
+          "endpoint_group": "core.count_instr",
+          "wns_ns": 1.462,
+          "n_failing": 0,
+          "n_endpoints": 64
+        }
+      ],
+      "worst_startpoint_groups": [
+        {
+          "startpoint_group": "core.genblk1.genblk1.pcpi_mul.mul_waiting",
+          "wns_ns": -10.921
+        },
+        {
+          "startpoint_group": "core.decoded_imm",
+          "wns_ns": -1.375
+        },
+        {
+          "startpoint_group": "core.genblk1.genblk1.pcpi_mul.pcpi_rs1",
+          "wns_ns": -1.167
+        },
+        {
+          "startpoint_group": "core.latched_stalu",
+          "wns_ns": -0.971
+        },
+        {
+          "startpoint_group": "core.genblk2.pcpi_div.dividend",
+          "wns_ns": 0.106
+        },
+        {
+          "startpoint_group": "core.latched_branch",
+          "wns_ns": 0.241
+        },
+        {
+          "startpoint_group": "core.cpu_state",
+          "wns_ns": 1.462
+        },
+        {
+          "startpoint_group": "core.count_cycle",
+          "wns_ns": 1.884
+        }
+      ]
+    },
+    "gls": {
+      "pass": false,
+      "fail_reason": null,
+      "cycles": 20001,
+      "instr_fetches": 1919,
+      "window": "first_20000_cycles",
+      "seconds": 139.7,
+      "activity_file": "<repo>\\runs\\agent_rules_s1_1\\power\\activity.txt"
+    },
+    "power": {
+      "freq_mhz": 100.0,
+      "window_cycles": 20001,
+      "total_mw": 12.4335,
+      "clock_mw": 11.9066,
+      "sequential_mw": 0.0982,
+      "combinational_mw": 0.4286,
+      "leakage_mw": 0.0,
+      "leakage_uw": 0.0382,
+      "internal_mw": 10.6441,
+      "switching_mw": 1.7894,
+      "energy_per_cycle_pj": 124.33,
+      "avg_net_toggle_rate": 0.0247,
+      "clock_pin_cap_pf": 4.467,
+      "n_ff": 2370,
+      "instances_without_activity": 0,
+      "top_registers_by_power": [
+        {
+          "register": "core.cpuregs",
+          "power_mw": 5.2269,
+          "n_ff": 1152,
+          "toggle_rate": 0.0002
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.rd",
+          "power_mw": 0.2904,
+          "n_ff": 64,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk2.pcpi_div.divisor",
+          "power_mw": 0.2858,
+          "n_ff": 63,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.next_rs2",
+          "power_mw": 0.2858,
+          "n_ff": 63,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.next_rs1",
+          "power_mw": 0.2858,
+          "n_ff": 63,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.count_cycle",
+          "power_mw": 0.2629,
+          "n_ff": 64,
+          "toggle_rate": 0.0312
+        },
+        {
+          "register": "core.count_instr",
+          "power_mw": 0.2556,
+          "n_ff": 64,
+          "toggle_rate": 0.0034
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.pcpi_rs2",
+          "power_mw": 0.1517,
+          "n_ff": 32,
+          "toggle_rate": 0.0354
+        },
+        {
+          "register": "core.decoded_imm",
+          "power_mw": 0.1501,
+          "n_ff": 32,
+          "toggle_rate": 0.0303
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.pcpi_rs1",
+          "power_mw": 0.1485,
+          "n_ff": 32,
+          "toggle_rate": 0.0127
+        },
+        {
+          "register": "core.dbg_mem_wdata",
+          "power_mw": 0.1454,
+          "n_ff": 32,
+          "toggle_rate": 0.0016
+        },
+        {
+          "register": "core.genblk1.genblk1.pcpi_mul.pcpi_rd",
+          "power_mw": 0.1452,
+          "n_ff": 32,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk2.pcpi_div.dividend",
+          "power_mw": 0.1452,
+          "n_ff": 32,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk2.pcpi_div.quotient_msk",
+          "power_mw": 0.1452,
+          "n_ff": 32,
+          "toggle_rate": 0.0
+        },
+        {
+          "register": "core.genblk2.pcpi_div.quotient",
+          "power_mw": 0.1452,
+          "n_ff": 32,
+          "toggle_rate": 0.0
+        }
+      ]
+    }
+  },
+  "wall_seconds": 216.2,
+  "ppa": {
+    "area_um2": 109702.7,
+    "num_cells": 10168,
+    "num_ff": 2370,
+    "target_mhz": 100.0,
+    "wns_ns": -10.921,
+    "tns_ns": -1921.538,
+    "fmax_mhz": 47.8,
+    "timing_met": false,
+    "workload_cycles": 622382,
+    "cpi": 6.82,
+    "workload_runtime_us_at_fmax": 13020.5,
+    "power_mw_at_target": 12.4335,
+    "energy_per_cycle_pj": 124.33,
+    "workload_energy_uj": 77.381
+  }
+}
