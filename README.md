@@ -2,6 +2,12 @@
 
 [![ci](https://github.com/RitikaMNeema/PPA_agent/actions/workflows/ci.yml/badge.svg)](https://github.com/RitikaMNeema/PPA_agent/actions/workflows/ci.yml)
 
+**Live demo (static snapshot):** https://ritikamneema.github.io/PPA_agent/ —
+[flow dashboard](https://ritikamneema.github.io/PPA_agent/dashboard.html) ·
+[exploration & agent](https://ritikamneema.github.io/PPA_agent/explore.html) ·
+[bottlenecks & RTL suggestions](https://ritikamneema.github.io/PPA_agent/bottlenecks.html)
+(rebuild with `python flow/publish_site.py`)
+
 An AI system that improves the **Power / Performance / Area (PPA)** of a real RISC-V
 CPU core (PicoRV32), built on an open-source ASIC flow. It combines three things:
 
