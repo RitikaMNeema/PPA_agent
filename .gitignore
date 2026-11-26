@@ -1,0 +1,24 @@
+# local toolchains / environments (see README "Setup")
+tools/
+.venv/
+__pycache__/
+build/
+upstream/
+
+# run outputs: keep only the small, human-readable artefacts
+runs/*
+!runs/iter000_baseline/
+runs/iter000_baseline/*
+!runs/iter000_baseline/metrics.json
+!runs/iter000_baseline/report.md
+!runs/iter000_baseline/bottlenecks.json
+!runs/iter000_baseline/advice.json
+!runs/dashboard.html
+!runs/bottlenecks.html
+
+# generated design candidates (re-create with flow/candidates.py)
+design/picorv32/candidates/
+design/picorv32/fw/build/
+
+# secrets
+.env
