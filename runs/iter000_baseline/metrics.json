@@ -916,7 +916,7 @@
       "instr_fetches": 91292,
       "window": "full_workload",
       "seconds": 2245.2,
-      "activity_file": "C:\\Ritika_Gemma4\\vlsi_agent\\runs\\iter000_baseline\\power\\activity.txt"
+      "activity_file": "runs\\iter000_baseline\\power\\activity.txt"
     },
     "power": {
       "freq_mhz": 100.0,
